@@ -20,7 +20,7 @@
 		"react-router": "^5.2.0",
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "4.0.1",
-		"tailwindcss": "^1.8.11"
+		"tailwindcss": "^2.1.2"
 	},
 	"scripts": {
 		"start": "npm run watch:css && react-scripts start",
@@ -30,6 +30,7 @@
 		"build:css": "postcss src/styles/index.css -o src/styles/tailwind.css --env production",
 		"watch:css": "postcss src/styles/index.css -o src/styles/tailwind.css"
 	},
+	"proxy": "http://localhost:5000",
 	"eslintConfig": {
 		"extends": "react-app"
 	},
