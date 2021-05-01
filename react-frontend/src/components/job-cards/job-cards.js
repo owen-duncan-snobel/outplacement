@@ -1,6 +1,11 @@
 import React from 'react';
-
+import Cards from './cards';
 const JobCards = () => {
-	return <div>Job Cards</div>;
+	return (
+		<div>
+			<Cards />
+			<Cards />
+		</div>
+	);
 };
 export default JobCards;

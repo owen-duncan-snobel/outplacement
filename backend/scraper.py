@@ -107,12 +107,9 @@ def getJobInfo(job_hunt, desired_charac):
     for i in range(len(col)):
         jobs_list[col[i]] = extracted_info[i]
 
-    pd.DataFrame.from_dict(jobs_list).to_json('./tmpp.json', orient='records')
+    json_jobs_list = pd.DataFrame.from_dict(jobs_list).to_json(orient='records')
     list_len = len(extracted_info[0])
-
-    return jobs_list,list_len
-
-json_of_items = {}
+    return json_jobs_list,list_len
 
 
 print(getJobInfo(getJobs('data+science', 'Toronto'), 'titles,companies,links,descriptions,location_job,date_listed'))

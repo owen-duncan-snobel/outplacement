@@ -18,6 +18,16 @@ const JobSheet = () => {
 			{ value: 'Status', readOnly: true },
 			{ value: 'Date Updated', readOnly: true },
 		],
+		[
+			{ readOnly: true, value: 1 },
+			{ value: '' },
+			{ value: '' },
+			{ value: '' },
+			{ value: '' },
+			{ value: '' },
+			{ value: '' },
+			{ value: '' },
+		],
 	]);
 
 	useEffect(() => {}, []);
@@ -55,23 +65,25 @@ const JobSheet = () => {
 
 	const deleteLastGrid = () => {
 		const newGrid = [...grid];
-		if (newGrid.length != 1) newGrid.pop();
+		if (newGrid.length > 2) newGrid.pop();
 		setGrid(newGrid);
 	};
 
 	return (
-		<>
-			<ReactDataSheet
-				className="container text-xs mx-auto"
-				data={grid}
-				overflow="wrap"
-				valueRenderer={valueRenderer}
-				onContextMenu={onContextMenu}
-				onCellsChanged={onCellsChanged}
-			/>
+		<div>
+			<div className=" max-h-64 overflow-auto">
+				<ReactDataSheet
+					className="container text-xs mx-auto"
+					data={grid}
+					overflow="wrap"
+					valueRenderer={valueRenderer}
+					onContextMenu={onContextMenu}
+					onCellsChanged={onCellsChanged}
+				/>
+			</div>
 			<button onClick={() => addGrid()}>new job</button>
 			<button onClick={() => deleteLastGrid()}>delete last row</button>
-		</>
+		</div>
 	);
 };
 export default JobSheet;
