@@ -1,4 +1,3 @@
-
 import urllib
 import requests
 
@@ -66,7 +65,6 @@ def getJobInfo(job_hunt, desired_charac):
             titles.append(getTitle(job_elem))
         extracted_info.append(titles)
     
-    print(extracted_info)
     if 'companies' in desired_charac:
         companies = []
         col.append('companies')
