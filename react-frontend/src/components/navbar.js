@@ -8,6 +8,7 @@ const Navbar = () => {
 			<div className="pl-3">LOGO</div>
 
 			<div className="flex w-full justify-end space-x-4">
+				<NavLink to="/dashboard">Dashboard</NavLink>
 				<NavLink to="/profile">Profile</NavLink>
 				<AuthenticationButton />
 			</div>

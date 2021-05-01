@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
-
+import JobSheet from '../components/job-datasheet/job-datasheet';
 const Profile = () => {
 	const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 	const { name, picture, email } = user;
