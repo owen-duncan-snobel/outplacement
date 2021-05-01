@@ -3,7 +3,6 @@ import requests
 
 from bs4 import BeautifulSoup
 import pandas as pd
-import os
 import json
 
 """
@@ -106,5 +105,5 @@ def get_job_info(job_hunt):
     for i in range(len(col)):
         jobs_list[col[i]] = extracted_info[i]
 
-    json_jobs_list = pd.DataFrame.from_dict(jobs_list).to_json(orient='records')
+    json_jobs_list = json.loads(pd.DataFrame.from_dict(jobs_list).to_json(orient='records'))
     return json_jobs_list
