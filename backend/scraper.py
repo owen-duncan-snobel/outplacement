@@ -2,9 +2,6 @@ import urllib
 import requests
 
 from bs4 import BeautifulSoup
-import selenium
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
 import pandas as pd
 import os
 
@@ -29,8 +26,8 @@ def getComp(job_elem):
     return company
 
 def getLink(job_elem):
-    link = job_elem.find('a')['href']
-    link = 'www.ca.indeed.com/' + link
+    link_elem = job_elem.find('a')['href']
+    link = 'www.ca.indeed.com/' + link_elem
     return link
 
 def getDate(job_elem):
@@ -38,9 +35,10 @@ def getDate(job_elem):
     date = date_elem.text.strip()
     return date
 
+    
 # Getting the job information
 def getJobInfo(job_hunt, desired_charac):
-    job_elems = job_hunt.soup.find_all('div', class_='jobsearch-SerpJobCard')
+    job_elems = job_hunt.find_all('div', class_='jobsearch-SerpJobCard')
 
     col = []
     extracted_info = []
@@ -85,4 +83,4 @@ def getJobInfo(job_hunt, desired_charac):
     
     
     return jobs_list,list_len
-    print(getJobInfo())
+print(getJobInfo(getJobs('data+science', 'Toronto'), 'job_description'))
