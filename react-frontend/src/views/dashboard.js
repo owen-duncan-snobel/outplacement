@@ -38,7 +38,6 @@ const Dashboard = () => {
 			try {
 				if (isAuthenticated) {
 					const token = await getAccessTokenSilently();
-					console.log(token);
 					const response = await fetch(
 						'http://localhost:5000/dashboard',
 						{
@@ -46,15 +45,15 @@ const Dashboard = () => {
 							headers: { authorization: `Bearer ${token}` },
 						}
 					)
-						.then((response) => console.log(response))
-						.then((json) => console.log(json));
+						.then((response) => response.json())
+						.then((json) => setJobData(json));
 				}
 			} catch (error) {
 				console.log(error);
 			}
 		}
 		fetchData();
-	}, [getAccessTokenSilently, isAuthenticated]);
+	}, []);
 
 	return (
 		<div className="grid grid-cols-3 gap-2 m-2 h-5/6">

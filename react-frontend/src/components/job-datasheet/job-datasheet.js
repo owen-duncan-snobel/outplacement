@@ -107,14 +107,14 @@ const JobSheet = (props) => {
 					Delete Row
 				</div>
 			</button>
-			<button onClick={() => saveGrid()}>
-				<div className="my-2 text-sm font-bold text-purple-800 dark:text-red-200 hover:text-red-500 dark:hover:text-red-400  md:mx-2 md:my-0">
-					Save
-				</div>
-			</button>
 			<button onClick={() => loadGrid()}>
 				<div className="my-2 text-sm font-bold text-green-700 dark:text-red-200 hover:text-red-500 dark:hover:text-red-400  md:mx-2 md:my-0">
 					Load
+				</div>
+			</button>
+			<button onClick={() => saveGrid()}>
+				<div className="my-2 text-sm font-bold text-purple-800 dark:text-red-200 hover:text-red-500 dark:hover:text-red-400  md:mx-2 md:my-0">
+					Save
 				</div>
 			</button>
 		</div>
