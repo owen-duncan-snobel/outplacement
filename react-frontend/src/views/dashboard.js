@@ -39,7 +39,7 @@ const Dashboard = () => {
 				const token = await getAccessTokenSilently();
 
 				const response = await fetch(
-					'http://localhost:5000/dashboard',
+					'https://arcane-fortress-87849.herokuapp.com/dashboard',
 					{
 						method: 'GET',
 						headers: { authorization: `Bearer ${token}` },

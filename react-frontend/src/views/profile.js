@@ -13,7 +13,7 @@ const Profile = () => {
 
 	const callApi = () => {
 		try {
-			fetch('http://localhost:5000', {
+			fetch('https://arcane-fortress-87849.herokuapp.com/', {
 				method: 'GET',
 			}).then((response) => console.log(response.data));
 		} catch (error) {
@@ -24,10 +24,13 @@ const Profile = () => {
 	const callProtectedApi = async () => {
 		try {
 			const token = await getAccessTokenSilently();
-			const response = await fetch('http://localhost:5000/dashboard', {
-				method: 'GET',
-				headers: { authorization: `Bearer ${token}` },
-			})
+			const response = await fetch(
+				'https://arcane-fortress-87849.herokuapp.com/dashboard',
+				{
+					method: 'GET',
+					headers: { authorization: `Bearer ${token}` },
+				}
+			)
 				.then((response) => response.json())
 				.then((json) => console.log(json));
 		} catch (error) {

@@ -15,14 +15,17 @@ const Cards = (props) => {
 	const addToGrid = async () => {
 		try {
 			const token = await getAccessTokenSilently();
-			const response = await fetch('http://localhost:5000/dashboard', {
-				method: 'GET',
-				headers: {
-					authorization: `Bearer ${token}`,
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
-				},
-			}).then((response) => response.json());
+			const response = await fetch(
+				'https://arcane-fortress-87849.herokuapp.com/dashboard',
+				{
+					method: 'GET',
+					headers: {
+						authorization: `Bearer ${token}`,
+						Accept: 'application/json',
+						'Content-Type': 'application/json',
+					},
+				}
+			).then((response) => response.json());
 
 			const grid = response.user_data;
 
@@ -53,15 +56,18 @@ const Cards = (props) => {
 	const saveGrid = async (grid) => {
 		try {
 			const token = await getAccessTokenSilently();
-			const response = await fetch('http://localhost:5000/dashboard', {
-				method: 'POST',
-				headers: {
-					authorization: `Bearer ${token}`,
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ user_data: grid }),
-			});
+			const response = await fetch(
+				'https://arcane-fortress-87849.herokuapp.com/dashboard',
+				{
+					method: 'POST',
+					headers: {
+						authorization: `Bearer ${token}`,
+						Accept: 'application/json',
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ user_data: grid }),
+				}
+			);
 		} catch (error) {
 			console.log(error);
 		}

@@ -28,15 +28,18 @@ const JobCards = () => {
 		const loadJobs = async () => {
 			try {
 				const token = await getAccessTokenSilently();
-				const response = await fetch('http://localhost:5000/jobs', {
-					method: 'POST',
-					headers: {
-						authorization: `Bearer ${token}`,
-						Accept: 'application/json',
-						'Content-Type': 'application/x-www-form-urlencoded',
-					},
-					body: data,
-				})
+				const response = await fetch(
+					'https://arcane-fortress-87849.herokuapp.com/jobs',
+					{
+						method: 'POST',
+						headers: {
+							authorization: `Bearer ${token}`,
+							Accept: 'application/json',
+							'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						body: data,
+					}
+				)
 					.then((response) => response.json())
 					.then((json) => setJobs(json));
 			} catch (error) {
