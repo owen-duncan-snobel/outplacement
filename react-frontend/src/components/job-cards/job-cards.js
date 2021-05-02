@@ -3,6 +3,7 @@ import Cards from './cards';
 const JobCards = () => {
 	const submitButton = (event) => {
 		event.preventDefault();
+		console.log('working');
 	};
 	return (
 		<div>

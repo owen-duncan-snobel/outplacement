@@ -72,6 +72,15 @@ client.connect((err) => {
 		}
 	});
 
+	app.get('/jobs', async (req, res) => {
+		try {
+			axios.get('https://sleepy-hamlet-27892.herokuapp.com/jobs?');
+		} catch (error) {
+			res.status(404);
+			res.send({ error: 'Jobs could not be fetched' });
+		}
+	});
+
 	app.get('/protected', (req, res) => {
 		res.send({ hello: 'Hello World!' });
 	});
