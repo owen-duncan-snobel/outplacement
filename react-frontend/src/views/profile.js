@@ -37,25 +37,25 @@ const Profile = () => {
 	return (
 		<div>
 			<div className="row align-items-center profile-header">
-				<div className="col-md-2 mb-3">
-					<img
-						src={picture}
-						alt="Profile"
-						className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
-					/>
-				</div>
-				<div className="col-md text-center text-md-left">
-					<h2>{name}</h2>
-					<p className="lead text-muted">{email}</p>
+				<div className="flex justify-center items-center my-4">
+					<div className="w-full sm:w-2/3 flex flex-col bg-white rounded-lg overflow-hidden">
+						<div className="col-md-2 mb-3"></div>
+						<div className="flex rounded-t-lg bg-gray-200 text-2xl px-8 py-6 ">
+							<img
+								src={user.picture}
+								alt="Profile"
+								className="rounded-full item-center hover:border float-left img-fluid profile-picture mb-3 mb-md-0"
+							/>
+							<div className="grid grid-cols-1 text-2xl px-16 py-4 divide-y divide-gray-800">
+								<div className="font-bold py-2">
+									{user.nickname}
+								</div>
+								<div>EMAIL: {user.email}</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div className="row">
-				<pre className="col-12 text-light bg-dark p-4">
-					{JSON.stringify(user, null, 2)}
-				</pre>
-			</div>
-			<button onClick={callApi}>CALL API</button>
-			<button onClick={callProtectedApi}>CALL PROTECT API</button>
 		</div>
 	);
 };

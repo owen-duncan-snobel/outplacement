@@ -107,7 +107,11 @@ const Cards = (props) => {
 						{description.join(' ')}
 					</div>
 					<div className=" px-6 py-4 text-xs">
-						<a href={'https://' + links} target="_blank">
+						<a
+							href={'https://' + links}
+							target="_blank"
+							rel="noreferrer"
+						>
 							View job listing
 						</a>
 					</div>

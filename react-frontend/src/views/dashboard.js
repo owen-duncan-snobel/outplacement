@@ -3,6 +3,7 @@ import JobCard from '../components/job-cards/job-cards';
 import JobSheet from '../components/job-datasheet/job-datasheet';
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import Loading from '../components/loading';
+import { Bar } from 'react-chartjs-2';
 
 const Dashboard = () => {
 	const { getAccessTokenSilently, isAuthenticated } = useAuth0();
@@ -52,16 +53,51 @@ const Dashboard = () => {
 		})();
 	}, [getAccessTokenSilently]);
 
+	const chartdata = {
+		labels: ['Applied', 'Ghosted', 'Interviewed', 'Accepted', 'Rejected'],
+		datasets: [
+			{
+				label: 'Job Applications',
+				data: [20, 11, 7, 1, 1],
+				fill: false,
+				backgroundColor: 'rgb(131, 174, 235)',
+				borderColor: 'rgba(255, 99, 132, 0.2)',
+			},
+		],
+	};
+
+	const options = {
+		scales: {
+			yAxes: [
+				{
+					ticks: {
+						beginAtZero: true,
+					},
+				},
+			],
+		},
+		maintainAspectRatio: false,
+	};
+
 	return (
-		<div className="grid grid-cols-3 gap-2 m-2 h-5/6">
-			<div className=" pb-20 overflow-auto">
-				<JobCard data={jobData} />
+		<div className="grid grid-cols-1 gap-2 m-2 lg:grid-cols-3 h-5/6 overflow-auto">
+			<div className=" m-1 col-span-1 md:col-span-1 overflow-auto">
+				<div className="pb-20 overflow-auto">
+					<JobCard data={jobData} />
+				</div>
 			</div>
-			<div>
-				<div className="col-span-2 h-1/2">
+			<div className=" m-1 md:col-span-2">
+				<div className="">
 					<JobSheet data={jobData} />
 				</div>
-				<div className="col-span-2 h-1/2">Working</div>
+				<div className="mt-2 h-1/3">
+					<Bar
+						data={chartdata}
+						options={options}
+						width={100}
+						height={50}
+					/>
+				</div>
 			</div>
 		</div>
 	);
