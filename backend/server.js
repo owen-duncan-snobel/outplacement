@@ -3,7 +3,7 @@ const port = 5000;
 const cors = require('cors');
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
-const axios = require('axios');
+const fetch = require('node-fetch');
 
 require('dotenv').config();
 
@@ -36,6 +36,7 @@ client.connect((err) => {
 
 	app.use(jwtCheck);
 	app.use(express.json());
+	app.use(express.urlencoded());
 
 	/**
 	 * * Returns the users-profile data for site
@@ -72,9 +73,20 @@ client.connect((err) => {
 		}
 	});
 
-	app.get('/jobs', async (req, res) => {
+	app.post('/jobs', async (req, res) => {
 		try {
-			axios.get('https://sleepy-hamlet-27892.herokuapp.com/jobs?');
+			const data = req.body;
+			const q = encodeURI(req.body.q);
+			const l = encodeURI(req.body.l);
+
+			fetch(
+				`https://sleepy-hamlet-27892.herokuapp.com/jobs/?q=${q}&l=${l}`,
+				{
+					method: 'GET',
+				}
+			)
+				.then((response) => response.json())
+				.then((json) => res.send(json));
 		} catch (error) {
 			res.status(404);
 			res.send({ error: 'Jobs could not be fetched' });
