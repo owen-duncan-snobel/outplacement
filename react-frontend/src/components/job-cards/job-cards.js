@@ -71,7 +71,12 @@ const JobCards = () => {
 							className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm rounded-md border border-black"
 							placeholder="Toronto"
 						></input>
-						<input type="submit" value="Submit"></input>
+						<button
+							class="bg-indigo-500 hover:bg-indigo-700 text-white font-semibold mt-1 px-3 rounded"
+							type="submit"
+						>
+							Submit
+						</button>
 					</form>
 				</div>
 			</div>

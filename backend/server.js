@@ -76,6 +76,7 @@ client.connect((err) => {
 	app.post('/jobs', async (req, res) => {
 		try {
 			const data = req.body;
+
 			const q = encodeURI(req.body.q);
 			const l = encodeURI(req.body.l);
 

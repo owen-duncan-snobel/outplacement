@@ -1,3 +1,5 @@
+import { useAuth0 } from '@auth0/auth0-react';
+
 const Cards = (props) => {
 	const {
 		companies,
@@ -8,11 +10,66 @@ const Cards = (props) => {
 		titles,
 	} = props.data;
 
+	const { getAccessTokenSilently } = useAuth0();
+
+	const loadGrid = async () => {
+		try {
+			const token = await getAccessTokenSilently();
+			const response = await fetch('http://localhost:5000/dashboard', {
+				method: 'GET',
+				headers: {
+					authorization: `Bearer ${token}`,
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+				},
+			})
+				.then((response) => response.json())
+				.then((json) => console.log(json.user_data));
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const addToGrid = () => {
+		/* 	setGrid([
+			...grid,
+			[
+				{ readOnly: true, value: grid.length },
+				{ value: '' },
+				{ value: '' },
+				{ value: '' },
+				{ value: '' },
+				{ value: '' },
+				{ value: '' },
+				{ value: '' },
+			],
+		]); */
+	};
+
+	const saveGrid = async () => {
+		try {
+			const token = await getAccessTokenSilently();
+			const response = await fetch('http://localhost:5000/dashboard', {
+				method: 'POST',
+				headers: {
+					authorization: `Bearer ${token}`,
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ user_data: 'working' }),
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	return (
 		<div className="flex justify-center items-center my-4">
 			<div className="w-full sm:w-2/3 flex flex-col bg-white shadow-xl rounded-lg overflow-hidden">
 				<div className="bg-gray-200 text-2xl font-bold">
-					<button class="text-sm bg-green-500  hover:bg-green-600 text-gray-800 font-bold py-2 px-4 rounded-r float-right">
+					<button
+						onClick={() => addToGrid()}
+						class="text-sm bg-green-500  hover:bg-green-600 text-gray-800 font-bold py-2 px-4 rounded-r float-right"
+					>
 						Add to chart
 					</button>
 				</div>
