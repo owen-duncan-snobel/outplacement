@@ -4,7 +4,6 @@ const JobCards = () => {
 	return (
 		<div>
 			<Cards />
-			<Cards />
 		</div>
 	);
 };
