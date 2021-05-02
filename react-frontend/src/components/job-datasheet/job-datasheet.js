@@ -81,8 +81,8 @@ const JobSheet = () => {
 					onCellsChanged={onCellsChanged}
 				/>
 			</div>
-			<button onClick={() => addGrid()}>new job</button>
-			<button onClick={() => deleteLastGrid()}>delete last row</button>
+			<button onClick={() => addGrid()}> <div className="my-2 text-sm font-bold text-blue-600 dark:text-blue-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-2 md:my-0">New Row</div></button>
+			<button onClick={() => deleteLastGrid()}><div className="my-2 text-sm font-bold text-red-600 dark:text-red-200 hover:text-red-500 dark:hover:text-red-400  md:mx-2 md:my-0">Delete Row</div></button>
 		</div>
 	);
 };
