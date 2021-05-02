@@ -85,7 +85,7 @@ const JobSheet = (props) => {
 
 	return (
 		<div>
-			<div className=" max-h-64 overflow-auto">
+			<div className=" max-h-80 overflow-auto">
 				<ReactDataSheet
 					className="container text-xs mx-auto"
 					data={grid}

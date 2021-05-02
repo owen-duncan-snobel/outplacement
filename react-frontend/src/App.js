@@ -5,6 +5,8 @@ import Navbar from './components/navbar';
 import Profile from './views/profile';
 import Dashboard from './views/dashboard';
 import Loading from './components/loading';
+import Home from './views/home';
+
 const App = () => {
 	const { isLoading } = useAuth0();
 
@@ -16,6 +18,7 @@ const App = () => {
 		<div className="h-screen">
 			<Navbar />
 			<Switch>
+				<Route exact path="/" component={Home} />
 				<Route path="/dashboard" component={Dashboard} />
 				<Route path="/profile" component={Profile} />
 			</Switch>
