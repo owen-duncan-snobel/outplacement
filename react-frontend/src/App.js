@@ -10,7 +10,7 @@ const App = () => {
 		<div className="h-screen">
 			<Navbar />
 			<Switch>
-				<Link path="/dashboard" component={Dashboard} />
+				<ProtectedRoute path="/dashboard" component={Dashboard} />
 				<ProtectedRoute path="/profile" component={Profile} />
 			</Switch>
 		</div>
