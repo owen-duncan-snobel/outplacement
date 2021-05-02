@@ -1,9 +1,14 @@
 import React from 'react';
 
-import { useAuth0 } from '@auth0/auth0-react';
-import JobSheet from '../components/job-datasheet/job-datasheet';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import Loading from '../components/loading';
 const Profile = () => {
-	const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+	const {
+		user,
+		isAuthenticated,
+		getAccessTokenSilently,
+		withAuthenticationRequired,
+	} = useAuth0();
 	const { name, picture, email } = user;
 
 	const callApi = () => {
@@ -55,4 +60,6 @@ const Profile = () => {
 	);
 };
 
-export default Profile;
+export default withAuthenticationRequired(Profile, {
+	onRedirecting: () => <Loading />,
+});

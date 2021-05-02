@@ -1,17 +1,23 @@
 import React from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import ProtectedRoute from './components/auth/protected-route';
 import Navbar from './components/navbar';
 import Profile from './views/profile';
 import Dashboard from './views/dashboard';
+import Loading from './components/loading';
 const App = () => {
+	const { isLoading } = useAuth0();
+
+	if (isLoading) {
+		return <Loading />;
+	}
+
 	return (
 		<div className="h-screen">
 			<Navbar />
 			<Switch>
-				<ProtectedRoute path="/dashboard" component={Dashboard} />
-				<ProtectedRoute path="/profile" component={Profile} />
+				<Route path="/dashboard" component={Dashboard} />
+				<Route path="/profile" component={Profile} />
 			</Switch>
 		</div>
 	);
