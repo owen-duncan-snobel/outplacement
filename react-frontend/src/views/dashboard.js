@@ -57,8 +57,11 @@ const Dashboard = () => {
 			<div className=" pb-20 overflow-auto">
 				<JobCard data={jobData} />
 			</div>
-			<div className="col-span-2 h-1/2">
-				<JobSheet data={jobData} />
+			<div>
+				<div className="col-span-2 h-1/2">
+					<JobSheet data={jobData} />
+				</div>
+				<div className="col-span-2 h-1/2">Working</div>
 			</div>
 		</div>
 	);
