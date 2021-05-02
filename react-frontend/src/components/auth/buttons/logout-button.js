@@ -13,9 +13,8 @@ const LogoutButton = () => {
 				})
 			}
 		>
-<div className="my-1 text-sm font-medium text-red-600 dark:text-red-200 hover:text-red-500 dark:hover:text-red-400 md:mx-4 md:my-0">
-
-			Log Out
+			<div className="my-1 text-sm font-medium text-red-600 dark:text-red-200 hover:text-red-500 dark:hover:text-red-400 md:mx-4 md:my-0">
+				Log Out
 			</div>
 		</button>
 	);

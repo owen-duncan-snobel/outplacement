@@ -43,20 +43,8 @@ client.connect((err) => {
 	app.get('/dashboard', async (req, res) => {
 		try {
 			const collection = client.db('db-name').collection('users-data');
-			const accessToken = req.headers.authorization.split(' ')[1];
-			const verifyUser = await axios.get(
-				'https://outplacement.us.auth0.com/userinfo',
-				{
-					headers: {
-						authorization: `Bearer ${accessToken}`,
-					},
-				}
-			);
-
-			const userAuthInfo = verifyUser.data;
-			const id = userAuthInfo.sub.split('|')[1];
-			const userData = await collection.findOne({ user: id });
-
+			const sub_token = req.user.sub.split('|')[1];
+			const userData = await collection.findOne({ user: sub_token });
 			res.send({ user_data: userData.user_data });
 		} catch (error) {
 			res.status(404);
@@ -67,19 +55,9 @@ client.connect((err) => {
 	app.post('/dashboard', async (req, res) => {
 		try {
 			const collection = client.db('db-name').collection('users-data');
-			const accessToken = req.headers.authorization.split(' ')[1];
-			const verifyUser = await axios.get(
-				'https://outplacement.us.auth0.com/userinfo',
-				{
-					headers: {
-						authorization: `Bearer ${accessToken}`,
-					},
-				}
-			);
-			const userAuthInfo = verifyUser.data;
-			const id = userAuthInfo.sub.split('|')[1];
+			const sub_token = req.user.sub.split('|')[1];
 			const userData = await collection.updateOne(
-				{ user: id },
+				{ user: sub_token },
 				{
 					$set: {
 						user_data: req.body.user_data,
