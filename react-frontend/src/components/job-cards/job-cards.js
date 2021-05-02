@@ -1,9 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import Cards from './cards';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const JobCards = () => {
 	const { getAccessTokenSilently } = useAuth0();
+
+	const [jobs, setJobs] = useState([
+		{
+			companies: 'Outplacement',
+			date_listed: 'Today',
+			description: [
+				'RU Hacks is a student-run organization of Ryerson University, located in the heart of downtown Toronto ',
+			],
+			links: 'https://ruhacks.com/',
+			location_job: 'Toronto',
+			titles: 'RU Hacks Judge',
+		},
+	]);
+
 	const submitButton = (event) => {
 		event.preventDefault();
 		const formdata = new FormData(event.target);
@@ -22,7 +36,9 @@ const JobCards = () => {
 						'Content-Type': 'application/x-www-form-urlencoded',
 					},
 					body: data,
-				}).then((response) => response.json());
+				})
+					.then((response) => response.json())
+					.then((json) => setJobs(json));
 			} catch (error) {
 				console.log(error);
 			}
@@ -60,7 +76,9 @@ const JobCards = () => {
 				</div>
 			</div>
 
-			<Cards />
+			{jobs.map((job, key) => (
+				<Cards key={key} data={job} />
+			))}
 		</div>
 	);
 };
