@@ -22,7 +22,7 @@ def get_jobs(job_name, location, page):
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"}
     link_url = 'https://ca.indeed.com/jobs?' + urllib.parse.urlencode(search_variables)
     #get_page = requests.get(link_url, proxies=proxyDict, headers=headers)
-    get_page = urlopen(link_url)
+    get_page = urlopen(link_url).
     print(get_page)
     soup_item = BeautifulSoup(get_page, "html.parser")
     job_hunt = soup_item.find(id='resultsCol')
