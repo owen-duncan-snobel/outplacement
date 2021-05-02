@@ -5,6 +5,8 @@ import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import Loading from '../components/loading';
 
 const Dashboard = () => {
+	const { getAccessTokenSilently, isAuthenticated } = useAuth0();
+
 	const [jobData, setJobData] = useState({
 		user_data: [
 			[
@@ -29,36 +31,31 @@ const Dashboard = () => {
 			],
 		],
 	});
-	const [savedJobs, setSavedJobs] = useState([]);
-
-	const { getAccessTokenSilently, isAuthenticated } = useAuth0();
 
 	useEffect(() => {
-		async function fetchData() {
+		(async () => {
 			try {
-				if (isAuthenticated) {
-					const token = await getAccessTokenSilently();
-					const response = await fetch(
-						'http://localhost:5000/dashboard',
-						{
-							method: 'GET',
-							headers: { authorization: `Bearer ${token}` },
-						}
-					)
-						.then((response) => response.json())
-						.then((json) => setJobData(json));
-				}
-			} catch (error) {
-				console.log(error);
+				const token = await getAccessTokenSilently();
+
+				const response = await fetch(
+					'http://localhost:5000/dashboard',
+					{
+						method: 'GET',
+						headers: { authorization: `Bearer ${token}` },
+					}
+				);
+				const data = await response.json();
+				setJobData(data);
+			} catch (e) {
+				console.error(e);
 			}
-		}
-		fetchData();
-	}, []);
+		})();
+	}, [getAccessTokenSilently]);
 
 	return (
 		<div className="grid grid-cols-3 gap-2 m-2 h-5/6">
 			<div className=" pb-20 overflow-auto">
-				<JobCard />
+				<JobCard data={jobData} />
 			</div>
 			<div className="col-span-2 h-1/2">
 				<JobSheet data={jobData} />

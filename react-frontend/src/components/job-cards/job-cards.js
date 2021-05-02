@@ -3,16 +3,12 @@ import Cards from './cards';
 const JobCards = () => {
 	const submitButton = (event) => {
 		event.preventDefault();
-		console.log('working submit');
 	};
 	return (
 		<div>
 			<div>
 				<form>
-					<label
-						for="query"
-						className="block text-sm font-medium text-gray-700"
-					></label>
+					<label className="block text-sm font-medium text-gray-700"></label>
 					Job
 					<input
 						type="text"
@@ -21,10 +17,7 @@ const JobCards = () => {
 						className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm rounded-md border border-black"
 						placeholder="Job Title, keywords, or company"
 					></input>
-					<label
-						for="location"
-						className="block text-sm font-medium text-gray-700"
-					></label>
+					<label className="block text-sm font-medium text-gray-700"></label>
 					Where
 					<input
 						type="text"

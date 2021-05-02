@@ -7,21 +7,20 @@ import { useAuth0 } from '@auth0/auth0-react';
 import 'react-datasheet/lib/react-datasheet.css';
 
 const JobSheet = (props) => {
-	const user_data = props.data;
-	const [usersData, setUsersData] = useState(user_data.user_data);
-	const [grid, setGrid] = useState(user_data.user_data);
-
-	useEffect(() => {}, []);
-
+	const user_data = props.data.user_data;
+	const [usersData, setUsersData] = useState(user_data);
+	const [grid, setGrid] = useState(user_data);
 	const { getAccessTokenSilently } = useAuth0();
 
-	const valueRenderer = (cell) => cell.value;
+	useEffect(() => {
+		loadGrid();
+	}, []);
 
+	const valueRenderer = (cell) => cell.value;
 	const onCellsChanged = (changes) => {
 		changes.forEach(({ cell, row, col, value }) => {
 			grid[row][col] = { ...grid[row][col], value };
 		});
-		console.log(usersData);
 	};
 
 	const onContextMenu = (e, cell, i, j) =>
