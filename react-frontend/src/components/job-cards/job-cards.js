@@ -72,7 +72,7 @@ const JobCards = () => {
 							placeholder="Toronto"
 						></input>
 						<button
-							class="bg-indigo-500 hover:bg-indigo-700 text-white font-semibold mt-1 px-3 rounded"
+							className="bg-indigo-500 hover:bg-indigo-700 text-white font-semibold mt-1 px-3 rounded"
 							type="submit"
 						>
 							Submit
@@ -81,9 +81,8 @@ const JobCards = () => {
 				</div>
 			</div>
 
-			{jobs.map((job, key) => (
-				<Cards key={key} data={job} />
-			))}
+			{jobs.length &&
+				jobs.map((job, key) => <Cards key={key} data={job} />)}
 		</div>
 	);
 };
