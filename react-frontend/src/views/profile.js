@@ -19,7 +19,7 @@ const Profile = () => {
 	const callProtectedApi = async () => {
 		try {
 			const token = await getAccessTokenSilently();
-			const response = await fetch('http://localhost:5000/protected', {
+			const response = await fetch('http://localhost:5000/dashboard', {
 				method: 'GET',
 				headers: { authorization: `Bearer ${token}` },
 			})
