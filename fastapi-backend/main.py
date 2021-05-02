@@ -17,5 +17,6 @@ async def jobs(q:str, l:str, page_id: int = 0):
         jobs_info = get_job_info(job_html)
         return jobs_info
     except Exception:
+
         raise HTTPException(400, 'Error unable to fetch jobs')  
 
