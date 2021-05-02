@@ -12,7 +12,7 @@ const Cards = (props) => {
 
 	const { getAccessTokenSilently } = useAuth0();
 
-	const loadGrid = async () => {
+	const addToGrid = async () => {
 		try {
 			const token = await getAccessTokenSilently();
 			const response = await fetch('http://localhost:5000/dashboard', {
@@ -22,31 +22,35 @@ const Cards = (props) => {
 					Accept: 'application/json',
 					'Content-Type': 'application/json',
 				},
-			})
-				.then((response) => response.json())
-				.then((json) => console.log(json.user_data));
+			}).then((response) => response.json());
+
+			const grid = response.user_data;
+
+			const updateGrid = [
+				...grid,
+				[
+					{ readOnly: true, value: grid.length },
+					{ value: companies },
+					{ value: titles.replaceAll(/new/g, '') },
+					{ value: location_job },
+					{ value: description.join(' ') },
+					{ value: '' },
+					{ value: '' },
+					{ value: '' },
+				],
+			];
+
+			saveGrid(updateGrid);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	const addToGrid = () => {
-		/* 	setGrid([
-			...grid,
-			[
-				{ readOnly: true, value: grid.length },
-				{ value: '' },
-				{ value: '' },
-				{ value: '' },
-				{ value: '' },
-				{ value: '' },
-				{ value: '' },
-				{ value: '' },
-			],
-		]); */
+	const refreshPage = () => {
+		window.location.reload();
 	};
 
-	const saveGrid = async () => {
+	const saveGrid = async (grid) => {
 		try {
 			const token = await getAccessTokenSilently();
 			const response = await fetch('http://localhost:5000/dashboard', {
@@ -56,7 +60,7 @@ const Cards = (props) => {
 					Accept: 'application/json',
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({ user_data: 'working' }),
+				body: JSON.stringify({ user_data: grid }),
 			});
 		} catch (error) {
 			console.log(error);
@@ -68,13 +72,13 @@ const Cards = (props) => {
 				<div className="bg-gray-200 text-2xl font-bold">
 					<button
 						onClick={() => addToGrid()}
-						class="text-sm bg-green-500  hover:bg-green-600 text-gray-800 font-bold py-2 px-4 rounded-r float-right"
+						className="text-sm bg-green-500  hover:bg-green-600 text-gray-800 font-bold py-2 px-4 rounded-r float-right"
 					>
 						Add to chart
 					</button>
 				</div>
 				<div className="bg-gray-200 text-2xl px-6 py-4 font-bold">
-					{titles}
+					{titles.replaceAll(/new/g, '')}
 				</div>
 				<div className="flex items-center pt-3">
 					<div className="ml-4">
